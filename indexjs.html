@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <body>
+    <div class="bg-gray-400 rounded-md p-6 w-full max-w-md mx-auto mt-10">
+      <h2 class="text-3xl font-bold">Shopping List Application</h2>
+      <div class="flex flex-col sm:flex-row gap-3 mt-5">
+        <input
+          type="text"
+          id="product"
+          placeholder="Add a product"
+          class="flex-1 p-2 rounded-md"
+        />
+
+        <button
+          class="bg-blue-600 px-5 py-2 text-white rounded-md"
+          onclick="addProduct()"
+        >
+          Add
+        </button>
+      </div>
+
+      <ul id="list"></ul>
+      <br />
+      <p id="total"></p>
+      <script>
+        let count=1;
+        function addProduct() {
+          let product = document.getElementById("product").value;
+          if (product == "") {
+            alert("please add a product");
+            return;
+          }
+          let list = document.getElementById("list");
+          list.innerHTML += `
+
+                <li class="flex justify-between items-center mt-3 border-b pb-2">
+                 <div class="flex items-center gap-2">
+                  ${count}
+                  <input type=checkbox  class="bg-green-600">
+                  ${product}
+                  </div>
+                  <button class="bg-red-600 px-3 py-1 text-white rounded-md" onclick="remove(this)">
+                    Remove Item
+                  </button>
+                </li>`;
+                   count++;
+          document.getElementById("product").value = ``;
+        }
+
+        function remove(button) {
+          button.parentElement.remove();
+        }
+      </script>
+    </div>
+  </body>
+</html>
